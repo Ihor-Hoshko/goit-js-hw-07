@@ -19,15 +19,15 @@ const galleryMarkup = galleryItems
 galleryAll.insertAdjacentHTML("afterbegin", galleryMarkup);
 galleryAll.addEventListener("click", onImgClick);
 
-function onImgClick(event) {
-  event.preventDefault();
+function onImgClick(e) {
+  e.preventDefault();
 
-  if (!event.target.classList.contains("gallery__image")) {
+  if (!e.target.classList.contains("gallery__image")) {
     return;
   }
 
   const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" width="800" height="600">
+    <img src="${e.target.dataset.source}" width="800" height="600">
 `);
 
   instance.show();
