@@ -17,19 +17,18 @@ const galleryMarkup = galleryItems
   )
   .join("");
 galleryAll.insertAdjacentHTML("afterbegin", galleryMarkup);
+galleryAll.addEventListener("click", onImgClick);
 
-gallerey.addEventListener("click", onImgClick);
+function onImgClick(event) {
+  event.preventDefault();
 
-function onImgClick(e) {
-  e.preventDefault();
-  if (e.target.nodeName !== "IMG") {
+  if (!event.target.classList.contains("gallery__image")) {
     return;
   }
-}
 
-const instance = basicLightbox.create(
-  ` 
-    <img src="${e.target.dataset.source}" width="599" height="300" >
-    `
-);
-instance.show();
+  const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="800" height="600">
+`);
+
+  instance.show();
+}
